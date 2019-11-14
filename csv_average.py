@@ -2,6 +2,7 @@
 import csv
 import numpy as np
 from argparse import ArgumentParser
+from datetime import datetime
 
 def read_data(fname):
 	return np.genfromtxt(fname, delimiter=',')
@@ -10,7 +11,10 @@ def avg_col(data):
 	return np.mean(data, axis=0)
 
 def write_data(fname,data):
-	np.savetxt(fname, np.reshape(data,(1,np.size(data))), delimiter=',', fmt='%f')
+	# Write date and time into output fname
+	now = datetime.now()
+	dt_string = now.strftime("%d-%m-%Y_%Hh%Mm%Ss_")
+	np.savetxt(dt_string + fname, np.reshape(data,(1,np.size(data))), delimiter=',', fmt='%f')
 
 
 if __name__ == "__main__":
