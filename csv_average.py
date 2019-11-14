@@ -5,7 +5,11 @@ from argparse import ArgumentParser
 from datetime import datetime
 
 def read_data(fname):
-	return np.genfromtxt(fname, delimiter=',')
+	data = np.genfromtxt(fname, delimiter=',')
+	if data[0][0] == nan:
+		data = data[1:]
+		rdr = csv.reader(open(fname))
+		labels = b.next()
 
 def avg_col(data):
 	return np.mean(data, axis=0)
