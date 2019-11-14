@@ -10,7 +10,7 @@ def avg_col(data):
 	return np.mean(data, axis=0)
 
 def write_data(fname,data):
-	np.savetxt(fname, data, delimiter=',', fmt='%d')
+	np.savetxt(fname, np.reshape(data,(1,np.size(data))), delimiter=',', fmt='%f')
 
 
 if __name__ == "__main__":
